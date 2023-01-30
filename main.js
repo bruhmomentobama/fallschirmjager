@@ -1,4 +1,5 @@
-let audio = new Audio();
+let audio = new Audio()
+let gun = new Audio()
 // CONSTANTS
 const FPS = 60
 const LOOP_INTERVAL = Math.round(1000 / FPS)
@@ -49,7 +50,7 @@ let enemy = {
 const MONEY_GEN_TIME = 1500
 let money = {
   $elem: $('#moneyBalance'),
-  balance: 300,
+  balance: 100,
   prevGenTime: null
 }
 
@@ -129,6 +130,8 @@ const spawnCharacterMinions = () => {
   if (spawn) {
     const randomID = generateRandomID()
     let health, troopType, speed, size, cost
+    gun = new Audio('./sound/gun.wav');
+    gun.volume = 0.05; gun.play() ;
 
     switch(troopSelection) {
       case '3': {
@@ -180,6 +183,8 @@ const spawnCharacterMinions = () => {
       const needAmount = newTroop.cost - money.balance
       $("#message").remove()
       displayCantAfford(needAmount)
+      gun.pause();
+      gun.currentTime = 0;
     }
   }
 
@@ -271,22 +276,21 @@ const collisionDetection = () => {
         if (ctHealth > ptHealth) {
           console.log(ctHealth, ptHealth)
           const ctRemainingHealth = ctHealth - ptHealth
-          $ctElem.text(`${ctRemainingHealth}`)
           ct.health = ctRemainingHealth
           ct.hit = ct.hit + 1
-          ct.speed = ct.speed * (ct.hit * 1.)
+          ct.speed = ct.speed * (ct.hit * 0.5)
 
           playerTroopsTBR.push(pt)
         } else if (ctHealth < ptHealth) {
           const ptRemainingHealth = ptHealth - ctHealth
-          $ptElem.text(`${ptRemainingHealth}`)
+
           pt.health = ptRemainingHealth
           // money.balance = money.balance + ctHealth
           money.balance = money.balance + ctHealth + ptHealth
           money.$elem.text(`${money.balance}`)
           enemy.deadCounter = enemy.deadCounter + 1
-          enemy.speed = ENEMY_SPEED + (enemy.deadCounter * 1.1)
-          enemy.spawnTime = enemy.spawnTime - 300
+          enemy.speed = ENEMY_SPEED + (enemy.deadCounter * 0.5)
+          enemy.spawnTime = enemy.spawnTime - 100
           computerTroopsTBR.push(ct)
         } else {
           computerTroopsTBR.push(ct)
@@ -383,7 +387,7 @@ const resetData = () => {
   enemy.health = 150
   enemy.prevGenTime = null
   enemy.speed = ENEMY_SPEED
-  money.balance = 300
+  money.balance = 100
   money.prevGenTime = null
   enemy.spawnTime = 5000
 }
