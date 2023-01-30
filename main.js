@@ -119,7 +119,7 @@ const generateCharacterMinion = (size = 50, left = 0, top = 0, id = '', health =
       id="${id}"
       class="${troop} minion"
       style="width:${size}px; height:${size}px; left:${left}px; top:${top}px;"
-    >${health}</div>
+    ></div>
   `
 }
 
@@ -135,7 +135,7 @@ const spawnCharacterMinions = () => {
         health = generateRandomHP(13)
         troopType = `playerScout`
         speed = 8
-        size = 17
+        size = 5
         cost = 16
         break
       }
@@ -143,7 +143,7 @@ const spawnCharacterMinions = () => {
         health = generateRandomHP(40)
         troopType = `playerTank`
         speed = 1
-        size = 25
+        size = 15
         cost = 30
         break
       }
@@ -151,7 +151,7 @@ const spawnCharacterMinions = () => {
         health = generateRandomHP(26)
         troopType = `playerFootman`
         speed = 2
-        size = 20
+        size = 10
         cost = 20
         break
       }
@@ -193,7 +193,7 @@ const generateEnemyMinion = (size = 80, right = 0, top = 0, id = '', health = 0,
       id="${id}"
       class="${troop} minion"
       style="width:${size}px; height:${size}px; right:${right}px; top:${top}px;"
-    >${health}</div>
+    ></div>
   `
 }
 
@@ -212,7 +212,7 @@ const spawnEnemyMinions = () => {
       id: randomID,
       health: randomHealth,
       troopType: troop,
-      $elem: $(generateEnemyMinion(80, x, y, randomID, randomHealth, troop)),
+      $elem: $(generateEnemyMinion(90, x, y, randomID, randomHealth, troop)),
       position: { x: x, y: y },
       hit: 0,
       speed: enemy.speed,
@@ -274,7 +274,7 @@ const collisionDetection = () => {
           $ctElem.text(`${ctRemainingHealth}`)
           ct.health = ctRemainingHealth
           ct.hit = ct.hit + 1
-          ct.speed = ct.speed * (ct.hit * 1.3)
+          ct.speed = ct.speed * (ct.hit * 1.)
 
           playerTroopsTBR.push(pt)
         } else if (ctHealth < ptHealth) {
