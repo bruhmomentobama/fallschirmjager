@@ -113,6 +113,15 @@ const displayCantAfford = (amount) => {
   })
 }
 
+// Set progress bar widths
+const setEnemyHealth = (amount) => {
+  $("#enemyHealthBar").css('width', amount + '%')
+}
+
+const setPlayerHealth = (amount) => {
+  $("#playerHealthBar").css('width', amount + '%')
+}
+
 const generateCharacterMinion = (size = 50, left = 0, top = 0, id = '', health = 0, troop = '') => {
   //Generate Troop
   return `
@@ -280,11 +289,14 @@ const collisionDetection = () => {
           ct.hit = ct.hit + 1
           ct.speed = ct.speed * (ct.hit * 0.5)
 
+          //setEnemyHealth(enemy.health)
+          //console.log(enemy.health)
+
           playerTroopsTBR.push(pt)
         } else if (ctHealth < ptHealth) {
           const ptRemainingHealth = ptHealth - ctHealth
-
           pt.health = ptRemainingHealth
+
           // money.balance = money.balance + ctHealth
           money.balance = money.balance + ctHealth + ptHealth
           money.$elem.text(`${money.balance}`)
@@ -366,6 +378,9 @@ const update = () => {
   spawnCharacterMinions()
   spawnEnemyMinions()
   updateMinionNumber()
+
+  setPlayerHealth(player.health / 150 * 100)
+  setEnemyHealth(enemy.health / 150 * 100)
 
   updateMinionMovements(enemy, playerTroops, playerTroopsTBR, 'left')
   updateMinionMovements(player, computerTroops, computerTroopsTBR, 'right')
