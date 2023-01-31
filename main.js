@@ -357,19 +357,19 @@ const checkWinner = () => {
       console.log(`GameOver`)
       audio.pause();
       audio.currentTime = 0;
-      displayGameOver()
       lose = new Audio('./sound/lose.mp3');
       lose.play();
       lose.volume = 0.2; lose.play() ;
+      displayGameOver()
       $startBTN.show().text('RESTART')
     } else {
       console.log(`Victory`)
       audio.pause();
       audio.currentTime = 0;
-      displayWin()
       win = new Audio('./sound/win.mp3');
       win.play();
       win.volume = 0.2; win.play() ;
+      displayWin()
       $startBTN.show().text('RESTART')
     }
   }
