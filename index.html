@@ -127,35 +127,45 @@
     }
 
   </style>
-  <center>
-    <div class="healthBars">
-      <div class="progress">
-        <div class="progress-bar bg-success" id="playerHealthBar" role="progressbar" style="width: 100%"
-          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><h7 style="color:gold">Player Health:<span id="playerHealth">100</span></h7></div>
+  <div class="container-fluid p-0">
+    <div class="row m-0">
+      <div class="col p-0">
+        <h6
+          style="color:black; font-size: 12px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+          Player Health:<span id="playerHealth">100</span></h6>
+        <div class="progress" style="height: 20px;">
+          <div class="progress-bar bg-success" id="playerHealthBar" role="progressbar"
+            style="width: 100%; min-width: 100px;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
       </div>
-      <div class="progress">
-        <div class="progress-bar bg-danger" id="enemyHealthBar" role="progressbar" style="width: 100%"
-          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><h7 style="color:gold">Enemy Health:<span id="enemyHealth">100</span></h7></div>
+      <div class="col p-0">
+        <h6
+          style="color:black; font-size: 12px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+          Enemy Barracks Health:<span id="enemyHealth">100</span></h6>
+        <div class="progress" style="height: 20px;">
+          <div class="progress-bar bg-danger" id="enemyHealthBar" role="progressbar"
+            style="width: 100%; min-width: 100px;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
       </div>
     </div>
-      <div id="troopList">
-        <span style="color:white" id="playerFootman" class="troopType">HK417<br>20€</span>
-        <span style="color:white" id="playerTank" class="troopType">HKFP6<br>30€</span>
+  </div>
+
+  <div id="troopList">
+    <span style="color:white" id="playerFootman" class="troopType">HK417<br>20€</span>
+      <span style="color:white" id="playerTank" class="troopType">HKFP6<br>30€</span>
         <span style="color:white" id="playerScout" class="troopType">MP7<br>16€<span>
-      </div>
-      <h4 style="color:gold">Military Funding: €<span id="moneyBalance"></span></h4>
+          </div>
+        <center><h4 style="color:gold">Military Funding: €<span id="moneyBalance"></span></h4></center>
       <div id="game-screen">
-        <div id="character"></div>
-        <button id="startButton" style="z-index: 9">Start Game</button>
+    <div id="character"></div>
+  <button id="startButton" style="z-index: 9">Start Game</button>
+    </div>
+      <div class="howtoplay">
+<p class="text-center"><a href="./htp.html" class="text-white"><img id='help'
+      src="./images/help.gif" width="75" height="75" alt=""></a></p>
       </div>
-      <div class="credits">
-        <h5 class="text-center text-white">Github & Source Code:</h5>
-        <p class="text-center"><a href="https://github.com/bruhmomentobama" class="text-white"><img id='github'
-              src="./images/github.png" width="30" height="30" alt=""></a> <a
-            href="https://github.com/bruhmomentobama/fallschirmjager" class="text-white"><img id='github'
-              src="./images/source.png" width="35" height="35" alt=""></a></p>
-      </div>
-  </center>
 </body>
 
 </html>

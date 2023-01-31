@@ -47,10 +47,10 @@ let enemy = {
 }
 
 // Money
-const MONEY_GEN_TIME = 1500
+const MONEY_GEN_TIME = 500
 let money = {
   $elem: $('#moneyBalance'),
-  balance: 100,
+  balance: 370,
   prevGenTime: null
 }
 
@@ -144,25 +144,25 @@ const spawnCharacterMinions = () => {
 
     switch(troopSelection) {
       case '3': {
-        health = generateRandomHP(13)
+        health = generateRandomHP(16)
         troopType = `playerScout`
-        speed = 8
+        speed = 10
         size = 5
         cost = 16
         break
       }
       case '2': {
-        health = generateRandomHP(40)
+        health = generateRandomHP(30)
         troopType = `playerTank`
-        speed = 1
+        speed = 6
         size = 15
         cost = 30
         break
       }
       default: {
-        health = generateRandomHP(26)
+        health = generateRandomHP(20)
         troopType = `playerFootman`
-        speed = 2
+        speed = 7
         size = 10
         cost = 20
         break
@@ -287,7 +287,7 @@ const collisionDetection = () => {
           const ctRemainingHealth = ctHealth - ptHealth
           ct.health = ctRemainingHealth
           ct.hit = ct.hit + 1
-          ct.speed = ct.speed * (ct.hit * 0.5)
+          ct.speed = ct.speed * (ct.hit * 0.8)
 
           //setEnemyHealth(enemy.health)
           //console.log(enemy.health)
@@ -301,7 +301,7 @@ const collisionDetection = () => {
           money.balance = money.balance + ctHealth + ptHealth
           money.$elem.text(`${money.balance}`)
           enemy.deadCounter = enemy.deadCounter + 1
-          enemy.speed = ENEMY_SPEED + (enemy.deadCounter * 0.5)
+          enemy.speed = ENEMY_SPEED + (enemy.deadCounter * 0.8)
           enemy.spawnTime = enemy.spawnTime - 100
           computerTroopsTBR.push(ct)
         } else {
@@ -399,12 +399,12 @@ const resetData = () => {
   character.position = { ...MIDDLE_POSITION }
   player.health =  100
   player.prevGenTime = null
-  enemy.health = 100
+  enemy.health = 350
   enemy.prevGenTime = null
   enemy.speed = ENEMY_SPEED
-  money.balance = 100
+  money.balance = 370
   money.prevGenTime = null
-  enemy.spawnTime = 5000
+  enemy.spawnTime = 4000
 }
 
 const clearHtml = () => {
