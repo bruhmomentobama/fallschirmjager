@@ -1,5 +1,7 @@
 let audio = new Audio()
 let gun = new Audio()
+let lose = new Audio()
+let win = new Audio()
 // CONSTANTS
 const FPS = 60
 const LOOP_INTERVAL = Math.round(1000 / FPS)
@@ -50,7 +52,7 @@ let enemy = {
 const MONEY_GEN_TIME = 500
 let money = {
   $elem: $('#moneyBalance'),
-  balance: 370,
+  balance: 150,
   prevGenTime: null
 }
 
@@ -140,11 +142,11 @@ const spawnCharacterMinions = () => {
     const randomID = generateRandomID()
     let health, troopType, speed, size, cost
     gun = new Audio('./sound/gun.wav');
-    gun.volume = 0.05; gun.play() ;
+    gun.volume = 0.09; gun.play() ;
 
     switch(troopSelection) {
       case '3': {
-        health = generateRandomHP(16)
+        health = generateRandomHP(8)
         troopType = `playerScout`
         speed = 10
         size = 5
@@ -152,7 +154,7 @@ const spawnCharacterMinions = () => {
         break
       }
       case '2': {
-        health = generateRandomHP(30)
+        health = generateRandomHP(14)
         troopType = `playerTank`
         speed = 6
         size = 15
@@ -160,7 +162,7 @@ const spawnCharacterMinions = () => {
         break
       }
       default: {
-        health = generateRandomHP(20)
+        health = generateRandomHP(12)
         troopType = `playerFootman`
         speed = 7
         size = 10
@@ -287,7 +289,6 @@ const collisionDetection = () => {
           const ctRemainingHealth = ctHealth - ptHealth
           ct.health = ctRemainingHealth
           ct.hit = ct.hit + 1
-          ct.speed = ct.speed * (ct.hit * 0.8)
 
           //setEnemyHealth(enemy.health)
           //console.log(enemy.health)
@@ -301,7 +302,7 @@ const collisionDetection = () => {
           money.balance = money.balance + ctHealth + ptHealth
           money.$elem.text(`${money.balance}`)
           enemy.deadCounter = enemy.deadCounter + 1
-          enemy.speed = ENEMY_SPEED + (enemy.deadCounter * 0.8)
+          enemy.speed = ENEMY_SPEED + (enemy.deadCounter * 0.4)
           enemy.spawnTime = enemy.spawnTime - 100
           computerTroopsTBR.push(ct)
         } else {
@@ -336,12 +337,12 @@ const removeMinions = () => {
 
 const displayGameOver = () => {
   const messageDiv = `<div id="message" style="display:none; z-index: 9">Game Over!</div>`
-  $(messageDiv).appendTo($gameScreen).fadeIn(300)
+  $(messageDiv).appendTo($gameScreen).fadeIn(400)
 }
 
 const displayWin = () => {
   const messageDiv = `<div id="message" style="display:none; z-index: 9">Victory!</div>`
-  $(messageDiv).appendTo($gameScreen).fadeIn(300)
+  $(messageDiv).appendTo($gameScreen).fadeIn(500)
 }
 
 const checkWinner = () => {
@@ -357,12 +358,18 @@ const checkWinner = () => {
       audio.pause();
       audio.currentTime = 0;
       displayGameOver()
+      lose = new Audio('./sound/lose.mp3');
+      lose.play();
+      lose.volume = 0.2; lose.play() ;
       $startBTN.show().text('RESTART')
     } else {
       console.log(`Victory`)
       audio.pause();
       audio.currentTime = 0;
       displayWin()
+      win = new Audio('./sound/win.mp3');
+      win.play();
+      win.volume = 0.2; win.play() ;
       $startBTN.show().text('RESTART')
     }
   }
@@ -399,12 +406,17 @@ const resetData = () => {
   character.position = { ...MIDDLE_POSITION }
   player.health =  100
   player.prevGenTime = null
-  enemy.health = 350
+  enemy.health = 100
   enemy.prevGenTime = null
   enemy.speed = ENEMY_SPEED
-  money.balance = 370
+  money.balance = 150
   money.prevGenTime = null
   enemy.spawnTime = 4000
+  lose.pause();
+  lose.currentTime = 0;
+  win.pause();
+  win.currentTime = 0;
+
 }
 
 const clearHtml = () => {
