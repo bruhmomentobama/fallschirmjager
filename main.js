@@ -408,10 +408,13 @@ const resetData = () => {
   player.prevGenTime = null
   enemy.health = 150
   enemy.prevGenTime = null
-  enemy.speed = ENEMY_SPEED
+  enemy.speed
   money.balance = 120
   money.prevGenTime = null
   enemy.spawnTime = 4000
+  speed = 0
+  enemy.speed = ENEMY_SPEED
+  enemy.deadCounter = 0
   lose.pause();
   lose.currentTime = 0;
   win.pause();
