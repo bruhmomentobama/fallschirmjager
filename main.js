@@ -52,7 +52,7 @@ let enemy = {
 const MONEY_GEN_TIME = 500
 let money = {
   $elem: $('#moneyBalance'),
-  balance: 150,
+  balance: 120,
   prevGenTime: null
 }
 
@@ -299,7 +299,7 @@ const collisionDetection = () => {
           pt.health = ptRemainingHealth
 
           // money.balance = money.balance + ctHealth
-          money.balance = money.balance + ctHealth + ptHealth
+          money.balance = money.balance + ctHealth * ptHealth
           money.$elem.text(`${money.balance}`)
           enemy.deadCounter = enemy.deadCounter + 1
           enemy.speed = ENEMY_SPEED + (enemy.deadCounter * 0.4)
@@ -406,10 +406,10 @@ const resetData = () => {
   character.position = { ...MIDDLE_POSITION }
   player.health =  100
   player.prevGenTime = null
-  enemy.health = 100
+  enemy.health = 150
   enemy.prevGenTime = null
   enemy.speed = ENEMY_SPEED
-  money.balance = 150
+  money.balance = 120
   money.prevGenTime = null
   enemy.spawnTime = 4000
   lose.pause();
