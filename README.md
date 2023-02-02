@@ -1,2 +1,9 @@
-This is my skin of https://github.com/MisterGalactic/gameProject/
-Original code by [MisterGalactic](https://github.com/MisterGalactic)
+This is my iteration of https://github.com/MisterGalactic/gameProject/
+Code inspired by [MisterGalactic](https://github.com/MisterGalactic)
+
+Credits:
+https://github.com/MisterGalactic/ [MisterGalactic] - Original Code
+https://github.com/KarpF1sh [KarpF1sh] - A bit of help with my code
+Dennis Cheung - Assisted me with broken lines of code and debugging
+
+Access the How To Play page from clicking the red question mark located at the bottom left of the game box.
