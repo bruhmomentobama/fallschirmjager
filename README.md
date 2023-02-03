@@ -2,6 +2,10 @@ This is my iteration of https://github.com/MisterGalactic/gameProject/
 
 Code inspired by [MisterGalactic](https://github.com/MisterGalactic)
 
+Used JQuery & Javascript
+
+Images belong to their respective owners
+
 Credits:
 
 [MisterGalactic](https://github.com/MisterGalactic/) - Original Code
